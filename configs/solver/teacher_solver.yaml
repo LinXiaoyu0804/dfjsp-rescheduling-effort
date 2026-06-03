@@ -1,0 +1,12 @@
+solver:
+  name: "cp_sat_repair_teacher"
+  time_limit_sec: 30.0
+  num_workers: 8
+  fix_kept_operations: false
+  trust_region_backward_ratio: 0.1
+  trust_region_forward_ratio: 0.3
+  warm_start: true
+  objective_weights:
+    makespan: 1.0
+    tardiness: 0.1
+    instability: 0.05

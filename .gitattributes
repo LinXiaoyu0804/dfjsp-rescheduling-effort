@@ -1,0 +1,19 @@
+# Normalize line endings to LF in the repository (cross-platform friendly).
+* text=auto eol=lf
+
+# Explicit text types
+*.py    text eol=lf
+*.md    text eol=lf
+*.yaml  text eol=lf
+*.yml   text eol=lf
+*.txt   text eol=lf
+*.csv   text eol=lf
+*.json  text eol=lf
+*.jsonl text eol=lf
+*.fjs   text eol=lf
+*.svg   text eol=lf
+
+# Binary artifacts
+*.pt    binary
+*.png   binary
+*.pdf   binary

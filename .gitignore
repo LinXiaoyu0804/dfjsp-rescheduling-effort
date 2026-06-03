@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# Vendored local packages (not part of the project; install via requirements.txt)
+.local_pkgs/
+
+# Environments
+.venv/
+venv/
+env/
+.env
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Local Claude Code settings (machine-specific)
+.claude/
+
+# Scratch experiment outputs (regenerable).
+outputs/**/*.log
+outputs/**/*.err.log
+outputs/_tmp/
+outputs/tmp_*/
+
+# --- Lean public release ---
+# The bulky per-event grids are regenerable via the pipeline (run_intensity_grid.py
+# / run_rho_boundary_experiment.py). We publish only the figures, summary tables,
+# frozen episodes, and the trained DDPG baseline; the heavy jsonl/CSV are excluded.
+outputs/intensity_grid/*_event_metrics.jsonl
+outputs/intensity_grid_decomp/*_event_metrics.jsonl
+outputs/rho_boundary/*_event_metrics.jsonl
+outputs/intensity_grid_decomp/event_components_compact.csv
+outputs/sensitivity/sensitivity_event_predictions.csv
+outputs/intensity_grid/_configs/
+outputs/intensity_grid/reproduction_gate/
+outputs/intensity_grid_decomp/_configs/
+outputs/rho_boundary/_configs/
+outputs/rho_boundary/episodes/

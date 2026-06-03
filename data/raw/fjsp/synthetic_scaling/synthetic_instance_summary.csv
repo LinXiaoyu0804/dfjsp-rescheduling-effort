@@ -1,0 +1,16 @@
+group_name,instance_tag,path,seed,n_jobs,n_machines,total_ops,generated_total_ops
+Scale-S,syn_30x10_01,data/raw/fjsp/synthetic_scaling/Scale-S/syn_30x10_01.fjs,20260332,30,10,221,221
+Scale-S,syn_30x10_02,data/raw/fjsp/synthetic_scaling/Scale-S/syn_30x10_02.fjs,20260333,30,10,219,219
+Scale-S,syn_30x10_03,data/raw/fjsp/synthetic_scaling/Scale-S/syn_30x10_03.fjs,20260334,30,10,224,224
+Scale-S,syn_30x10_04,data/raw/fjsp/synthetic_scaling/Scale-S/syn_30x10_04.fjs,20260335,30,10,236,236
+Scale-S,syn_30x10_05,data/raw/fjsp/synthetic_scaling/Scale-S/syn_30x10_05.fjs,20260336,30,10,241,241
+Scale-M,syn_50x15_01,data/raw/fjsp/synthetic_scaling/Scale-M/syn_50x15_01.fjs,20270332,50,15,382,382
+Scale-M,syn_50x15_02,data/raw/fjsp/synthetic_scaling/Scale-M/syn_50x15_02.fjs,20270333,50,15,380,380
+Scale-M,syn_50x15_03,data/raw/fjsp/synthetic_scaling/Scale-M/syn_50x15_03.fjs,20270334,50,15,363,363
+Scale-M,syn_50x15_04,data/raw/fjsp/synthetic_scaling/Scale-M/syn_50x15_04.fjs,20270335,50,15,385,385
+Scale-M,syn_50x15_05,data/raw/fjsp/synthetic_scaling/Scale-M/syn_50x15_05.fjs,20270336,50,15,369,369
+Scale-L,syn_100x20_01,data/raw/fjsp/synthetic_scaling/Scale-L/syn_100x20_01.fjs,20280332,100,20,739,739
+Scale-L,syn_100x20_02,data/raw/fjsp/synthetic_scaling/Scale-L/syn_100x20_02.fjs,20280333,100,20,733,733
+Scale-L,syn_100x20_03,data/raw/fjsp/synthetic_scaling/Scale-L/syn_100x20_03.fjs,20280334,100,20,756,756
+Scale-L,syn_100x20_04,data/raw/fjsp/synthetic_scaling/Scale-L/syn_100x20_04.fjs,20280335,100,20,737,737
+Scale-L,syn_100x20_05,data/raw/fjsp/synthetic_scaling/Scale-L/syn_100x20_05.fjs,20280336,100,20,765,765

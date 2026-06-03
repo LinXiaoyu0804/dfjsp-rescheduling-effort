@@ -1,0 +1,20 @@
+ddpg_baseline:
+  dataset_path: "outputs/external_baselines/ddpg/train/ddpg_teacher_dataset.pt"
+  checkpoint_path: "outputs/external_baselines/ddpg/checkpoints/best_ddpg.pt"
+  input_dim: 65
+  hidden_dim: 64
+  dropout: 0.10
+  batch_size: 16
+  num_epochs: 180
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  val_ratio: 0.2
+  early_stopping_patience: 20
+  release_fraction: 0.3333333333
+  size_penalty: 0.10
+  rule_candidates:
+    - "SPT"
+    - "MWKR"
+    - "EDD"
+    - "CR"
+    - "ATC"

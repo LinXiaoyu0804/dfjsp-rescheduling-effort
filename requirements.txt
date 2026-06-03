@@ -1,0 +1,9 @@
+# Requires Python >= 3.10
+numpy>=1.24
+pandas>=2.0
+PyYAML>=6.0
+torch>=2.2
+ortools>=9.8
+scipy>=1.11
+matplotlib>=3.7
+seaborn>=0.13

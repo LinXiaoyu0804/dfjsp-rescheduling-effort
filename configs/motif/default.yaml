@@ -1,0 +1,19 @@
+motifs:
+  k_contention: 8
+  l_pre: 2
+  l_suc: 2
+  k_event: 12
+  K_motif_pool: 48
+  precedence_closure_backward_depth: 1
+  precedence_closure_forward_depth: 0
+  grouped_probing:
+    group_target_size: 4
+    max_group_size: 6
+    min_similarity: 0.15
+    half_probe_min_group_size: 4
+    probe_budget_sec: 3.0
+    reference_budget_sec: 3.0
+    beta_nnls: 1e-2
+    calibration_fraction: 0.2
+    exact_pair_probe_limit: 8
+    usefulness_threshold: 1e-6

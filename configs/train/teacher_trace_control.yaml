@@ -1,0 +1,6 @@
+teacher_trace_batch:
+  shrink:
+    max_attempts: 24
+    time_limit_sec: 1.0
+    objective_tolerance_rel: 0.0001
+    objective_tolerance_abs: 1e-06

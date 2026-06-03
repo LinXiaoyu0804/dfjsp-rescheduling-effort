@@ -1,0 +1,3 @@
+baseline:
+  name: "full_reoptimization"
+  release_all_window_ops: true

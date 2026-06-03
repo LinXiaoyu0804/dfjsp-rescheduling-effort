@@ -1,0 +1,87 @@
+experiment:
+  name: "dfjsp_rescheduling_effort"
+  output_root: "outputs/runs"
+  seed: 42
+  device: "cpu"
+  save_every: 1
+
+data:
+  family: "fjsp"
+  parser: "auto"
+  instance_path: "data/raw/fjsp/sample_instance.fjs"
+  teacher_dataset_path: "data/teacher_traces/sample_teacher_dataset.pt"
+
+env:
+  horizon_type: "time"
+  rolling_horizon: 50.0
+  max_window_ops: 64
+  freeze_started_operations: true
+  freeze_completed_operations: true
+  reschedule_on_events:
+    - "job_arrival"
+    - "machine_breakdown"
+  objective_weights:
+    makespan: 1.0
+    tardiness: 1.0
+    instability: 0.2
+
+events:
+  enabled:
+    - "job_arrival"
+    - "machine_breakdown"
+  job_arrival:
+    enabled: true
+    num_new_jobs: 2
+    earliest_time: 5.0
+    latest_time: 60.0
+    copied_job_template: true
+  machine_breakdown:
+    enabled: true
+    num_breakdowns: 2
+    earliest_time: 5.0
+    latest_time: 60.0
+    min_duration: 5.0
+    max_duration: 15.0
+  processing_time_perturbation:
+    enabled: false
+    relative_delta: 0.1
+
+model:
+  encoder_type: "simple_hetero"
+  hidden_dim: 128
+  num_layers: 2
+  dropout: 0.1
+
+policy:
+  contradictory_penalty: 0.05
+  release_size_penalty: 0.1
+  release_cap: 12
+  release_cap_ratio: 0.35
+  min_release_count: 1
+  selection_score_alpha: 0.5
+  threshold: null
+
+solver:
+  name: "cp_sat_repair"
+  time_limit_sec: 5.0
+  teacher_time_limit_sec: 30.0
+  fix_kept_operations: true
+  trust_region_backward_ratio: 0.1
+  trust_region_forward_ratio: 0.3
+  warm_start: true
+  num_workers: 8
+
+train:
+  batch_size: 16
+  num_epochs: 20
+  learning_rate: 0.0003
+  weight_decay: 0.0001
+  val_ratio: 0.2
+  early_stopping_patience: 5
+  checkpoint_dir: "outputs/runs/checkpoints"
+
+eval:
+  num_seeds: 3
+  save_detailed_csv: true
+  aggregate_dir: "outputs/aggregated"
+  figure_dir: "outputs/figures"

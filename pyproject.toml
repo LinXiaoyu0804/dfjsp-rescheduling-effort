@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dfjsp-rescheduling-effort"
+version = "0.1.0"
+description = "Empirical study of rescheduling-effort decisions (L0-L3 ladder) under a response budget in dynamic flexible job-shop rescheduling: realizable-value ceiling and learning applicability"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

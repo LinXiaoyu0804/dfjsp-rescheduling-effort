@@ -1,0 +1,18 @@
+solver:
+  name: "cp_sat_repair"
+  time_limit_sec: 10.0
+  num_workers: 8
+  runtime_budget_guard_multiplier: 1.1
+  runtime_budget_guard_slack_sec: 0.5
+  runtime_raw_anomaly_ratio_threshold: 8.0
+  runtime_raw_anomaly_slack_sec: 30.0
+  fix_kept_operations: true
+  trust_region_time_shift: 10.0
+  warm_start: true
+  objective_weights:
+    makespan: 1.0
+    tardiness: 1.0
+    instability: 0.2
+  instability:
+    start_shift_weight: 1.0
+    machine_change_weight: 1.0

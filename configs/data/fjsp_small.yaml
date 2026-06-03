@@ -1,0 +1,7 @@
+data:
+  family: "fjsp"
+  parser: "fjsp"
+  instance_path: "data/raw/fjsp/sample_instance.fjs"
+  due_date_rule:
+    mode: "total_work_content_factor"
+    factor: 1.5

@@ -1,0 +1,11 @@
+data:
+  family: "fjsp"
+  parser: "fjsp"
+  due_date_rule:
+    mode: "total_work_content_factor"
+    factor: 1.5
+
+protocol:
+  train_manifest: "configs/benchmarks/brandimarte_train_small.yaml"
+  test_manifest: "configs/benchmarks/brandimarte_test_small.yaml"
+  main_manifest: "configs/benchmarks/brandimarte_full_main.yaml"

@@ -1,0 +1,9 @@
+data:
+  family: "jsp"
+  parser: "jsp"
+  due_date_rule:
+    mode: "total_work_content_factor"
+    factor: 1.5
+
+protocol:
+  cross_variant_manifest: "configs/benchmarks/jsp_orlib_cross_variant_small.yaml"

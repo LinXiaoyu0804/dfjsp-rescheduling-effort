@@ -1,0 +1,4 @@
+baseline:
+  name: "heuristic_rolling_horizon"
+  release_cap: 12
+  rule: "event_impacted_then_earliest_start"

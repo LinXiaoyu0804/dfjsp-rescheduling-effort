@@ -1,0 +1,9 @@
+benchmark_manifest:
+  name: "brandimarte_test_debug"
+  description: "Single-instance held-out debug split for quick pipeline checks."
+  family: "fjsp"
+  instances:
+    - path: "data/raw/fjsp/FJSP-benchmarks-main/1_Brandimarte/BrandimarteMk6.fjs"
+      family: "fjsp"
+      tag: "mk6"
+      split: "debug_test"

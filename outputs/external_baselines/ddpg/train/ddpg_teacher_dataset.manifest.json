@@ -1,0 +1,7 @@
+{
+  "teacher_dir": "outputs/scale_probe_train3_syn50/train/teacher/traces",
+  "num_shards": 15,
+  "num_samples": 120,
+  "output_path": "outputs/external_baselines/ddpg/train/ddpg_teacher_dataset.pt",
+  "summary_csv": "outputs/external_baselines/ddpg/train/ddpg_teacher_dataset_summary.csv"
+}

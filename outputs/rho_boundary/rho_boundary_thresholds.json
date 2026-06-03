@@ -1,0 +1,35 @@
+{
+  "gamma": 0.2,
+  "headroom_thresholds": [
+    {
+      "epsilon_fraction": 0.001,
+      "epsilon_percent": 0.1,
+      "rho_t": null,
+      "bin": "not_observed"
+    },
+    {
+      "epsilon_fraction": 0.01,
+      "epsilon_percent": 1.0,
+      "rho_t": null,
+      "bin": "not_observed"
+    }
+  ],
+  "capture_threshold": {
+    "criterion": "capture_percent > 50 and bootstrap_ci95_low > 0",
+    "rho_t": null,
+    "bin": "not_observed"
+  },
+  "honest_policy": {
+    "train_seed_parity": 0,
+    "test_seed_parity": 1,
+    "n_train_events": 1920,
+    "n_test_events": 1440,
+    "threshold": 5.3191540820995144e-05,
+    "train_mean_policy_gain": 0.00013787473154652454,
+    "train_upgrade_rate": 0.5807291666666666,
+    "test_mean_policy_gain": 2.2771099205988948e-07,
+    "test_mean_oracle_gain": 0.00015928977780651167,
+    "test_capture_fraction": 0.0014295392660820245,
+    "test_upgrade_rate": 0.6166666666666667
+  }
+}

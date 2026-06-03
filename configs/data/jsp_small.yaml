@@ -1,0 +1,7 @@
+data:
+  family: "jsp"
+  parser: "jsp"
+  instance_path: "data/raw/jsp/sample_instance.jsp"
+  due_date_rule:
+    mode: "total_work_content_factor"
+    factor: 1.5

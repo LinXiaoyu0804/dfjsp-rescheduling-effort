@@ -1,0 +1,9 @@
+benchmark_manifest:
+  name: "brandimarte_train_debug"
+  description: "Single-instance debug split for phase-B pipeline validation."
+  family: "fjsp"
+  instances:
+    - path: "data/raw/fjsp/FJSP-benchmarks-main/1_Brandimarte/BrandimarteMk1.fjs"
+      family: "fjsp"
+      tag: "mk1"
+      split: "debug"

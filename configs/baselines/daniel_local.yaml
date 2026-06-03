@@ -1,0 +1,5 @@
+daniel_baseline:
+  benchmark_root: null
+  checkpoint_source: "SD2"
+  checkpoint_label: null
+  notes: "Local DANIEL benchmark adapter. Auto-discovers the benchmark repo on Desktop when benchmark_root is null."

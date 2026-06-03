@@ -1,0 +1,715 @@
+{
+  "status": "completed",
+  "output_root": "outputs/rho_boundary",
+  "base_configs": [
+    "configs/default.yaml",
+    "configs/env/formal_dynamic_stronger_v2.yaml",
+    "configs/env/rho_boundary_profiles.yaml",
+    "configs/solver/cp_repair_default.yaml"
+  ],
+  "base_config_sha256": {
+    "configs/default.yaml": "936b030e6e999dc181c8f84ff820ce5dc2a34e4e9958bf0bb8e012f9f912775e",
+    "configs/env/formal_dynamic_stronger_v2.yaml": "e8f25b5517494b70ed4bccccea184712e3179075ea8c87193a6b028695635a48",
+    "configs/env/rho_boundary_profiles.yaml": "0ee530314d4e7336fa696d4aa1fff150326aff6e1b225b1fc05404cf8112ac29",
+    "configs/solver/cp_repair_default.yaml": "db31eb4aee54b68099e4f2c0b0b68f5f6c296525c7a5da2ef8757e69e3a6b66c"
+  },
+  "checkpoint_path": null,
+  "checkpoint_sha256": null,
+  "intensity_ladder": {
+    "L0": {
+      "backend": "heuristic_rh_compatible_right_shift",
+      "release_rule": "existing heuristic_rh release set for reproduction compatibility",
+      "cp_backend": "same evaluation backend as heuristic_rh baseline"
+    },
+    "L1": {
+      "backend": "cp_sat_repair",
+      "release_rule": "L0 plus direct job predecessor/successor and incumbent-machine neighbors",
+      "trust_region": {
+        "backward_ratio": 0.05,
+        "forward_ratio": 0.15
+      }
+    },
+    "L2": {
+      "backend": "cp_sat_repair",
+      "release_rule": "L1 plus M3 propagation and M4 disturbance motif operation clusters",
+      "trust_region": {
+        "backward_ratio": 0.1,
+        "forward_ratio": 0.3
+      }
+    },
+    "L3": {
+      "backend": "cp_sat_repair",
+      "release_rule": "entire pending rolling-window release set, matching full_reoptimization",
+      "trust_region": {
+        "backward_ratio": 0.1,
+        "forward_ratio": 0.3
+      }
+    }
+  },
+  "rho_intensity_profile_definitions": {
+    "R0": "standard frozen traces",
+    "R1": {
+      "num_epochs": 4,
+      "earliest_ratio": 0.08,
+      "latest_ratio": 0.4,
+      "arrivals_per_epoch": 1,
+      "breakdowns_per_epoch": 1,
+      "bottleneck_breakdowns": true,
+      "duration_min_ratio": 0.05,
+      "duration_max_ratio": 0.12
+    },
+    "R2": {
+      "num_epochs": 4,
+      "earliest_ratio": 0.05,
+      "latest_ratio": 0.3,
+      "arrivals_per_epoch": 2,
+      "breakdowns_per_epoch": 1,
+      "bottleneck_breakdowns": true,
+      "duration_min_ratio": 0.08,
+      "duration_max_ratio": 0.18
+    },
+    "R3": {
+      "num_epochs": 3,
+      "earliest_ratio": 0.03,
+      "latest_ratio": 0.22,
+      "arrivals_per_epoch": 2,
+      "breakdowns_per_epoch": 2,
+      "bottleneck_breakdowns": true,
+      "duration_min_ratio": 0.15,
+      "duration_max_ratio": 0.3
+    },
+    "R4": {
+      "num_epochs": 3,
+      "earliest_ratio": 0.02,
+      "latest_ratio": 0.16,
+      "arrivals_per_epoch": 3,
+      "breakdowns_per_epoch": 3,
+      "bottleneck_breakdowns": true,
+      "duration_min_ratio": 0.25,
+      "duration_max_ratio": 0.45
+    },
+    "R5": {
+      "num_epochs": 2,
+      "earliest_ratio": 0.01,
+      "latest_ratio": 0.1,
+      "arrivals_per_epoch": 4,
+      "breakdowns_per_epoch": 4,
+      "bottleneck_breakdowns": true,
+      "duration_min_ratio": 0.4,
+      "duration_max_ratio": 0.7
+    }
+  },
+  "regimes": [
+    "R0",
+    "R1",
+    "R2",
+    "R3",
+    "R4",
+    "R5"
+  ],
+  "budgets": [
+    0.5,
+    1.0
+  ],
+  "intensities": [
+    "L0",
+    "L1",
+    "L2",
+    "L3"
+  ],
+  "disturbance": "mixed",
+  "seeds": {
+    "mk9_mk10": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "synthetic_50x15_100x20": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "instances": [
+    {
+      "label": "mk9",
+      "source_episodes_dir": "outputs/episodes/brandimarte_heldout/episodes",
+      "instance_ids": [
+        "mk9"
+      ],
+      "instance_prefix": "",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "label": "mk10",
+      "source_episodes_dir": "outputs/episodes/brandimarte_heldout/episodes",
+      "instance_ids": [
+        "mk10"
+      ],
+      "instance_prefix": "",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "label": "synthetic_50x15",
+      "source_episodes_dir": "outputs/episodes/synthetic_50x15/episodes",
+      "instance_ids": [],
+      "instance_prefix": "syn_50x15_",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "label": "synthetic_100x20",
+      "source_episodes_dir": "outputs/episodes/synthetic_100x20/episodes",
+      "instance_ids": [],
+      "instance_prefix": "syn_100x20_",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  ],
+  "event_trace_policy": "Each (regime, scale, instance, seed) episode trace is frozen and reused across all intensities and budgets.",
+  "solver_budget_policy": "All intensity levels receive the same per-event CP-SAT wall-clock cap for a given budget cell.",
+  "rho_definition": "rho_t = pending assigned processing mass in W_t / makespan_before; rho_t_foot = directly impacted pending assigned processing mass / makespan_before.",
+  "rho_distributions": {
+    "R0": {
+      "n_events": 560.0,
+      "min": 0.0,
+      "median": 0.10466012928777302,
+      "max": 3.9836150579745935
+    },
+    "R1": {
+      "n_events": 280.0,
+      "min": 0.027730536215154783,
+      "median": 3.031657355679702,
+      "max": 5.218527750489184
+    },
+    "R2": {
+      "n_events": 280.0,
+      "min": 0.05734828314511464,
+      "median": 3.475776303994532,
+      "max": 5.320957644548179
+    },
+    "R3": {
+      "n_events": 210.0,
+      "min": 0.2974235811481524,
+      "median": 3.4281212810000845,
+      "max": 5.390679709887077
+    },
+    "R4": {
+      "n_events": 210.0,
+      "min": 0.9863583078153592,
+      "median": 2.674856766680484,
+      "max": 5.0742459396751745
+    },
+    "R5": {
+      "n_events": 140.0,
+      "min": 0.9580284966122321,
+      "median": 2.2056959213845464,
+      "max": 5.581730769230769
+    }
+  },
+  "reproduction_gate": {
+    "passed": true,
+    "train_seed_parity": 0,
+    "test_seed_parity": 1,
+    "n_train_events": 640,
+    "n_test_events": 480,
+    "threshold": 3.368581243584033e-05,
+    "train_mean_policy_gain": 0.00017466162503794832,
+    "train_upgrade_rate": 0.559375,
+    "test_mean_policy_gain": 8.032375464825554e-05,
+    "test_mean_oracle_gain": 0.00017361048796386564,
+    "test_capture_fraction": 0.4626664874357919,
+    "test_upgrade_rate": 0.6375
+  },
+  "runs": [
+    {
+      "regime": "R0",
+      "intensity": "L0",
+      "budget_sec": 0.5,
+      "event_count": 560,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R0__L0__b0p5_event_metrics.jsonl",
+      "config_path": null,
+      "source": "outputs/intensity_grid_decomp",
+      "source_policy": "materialized_from_existing_intensity_grid_decomp_with_replayed_rho_t"
+    },
+    {
+      "regime": "R0",
+      "intensity": "L1",
+      "budget_sec": 0.5,
+      "event_count": 560,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R0__L1__b0p5_event_metrics.jsonl",
+      "config_path": null,
+      "source": "outputs/intensity_grid_decomp",
+      "source_policy": "materialized_from_existing_intensity_grid_decomp_with_replayed_rho_t"
+    },
+    {
+      "regime": "R0",
+      "intensity": "L2",
+      "budget_sec": 0.5,
+      "event_count": 560,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R0__L2__b0p5_event_metrics.jsonl",
+      "config_path": null,
+      "source": "outputs/intensity_grid_decomp",
+      "source_policy": "materialized_from_existing_intensity_grid_decomp_with_replayed_rho_t"
+    },
+    {
+      "regime": "R0",
+      "intensity": "L3",
+      "budget_sec": 0.5,
+      "event_count": 560,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R0__L3__b0p5_event_metrics.jsonl",
+      "config_path": null,
+      "source": "outputs/intensity_grid_decomp",
+      "source_policy": "materialized_from_existing_intensity_grid_decomp_with_replayed_rho_t"
+    },
+    {
+      "regime": "R0",
+      "intensity": "L0",
+      "budget_sec": 1.0,
+      "event_count": 560,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R0__L0__b1_event_metrics.jsonl",
+      "config_path": null,
+      "source": "outputs/intensity_grid_decomp",
+      "source_policy": "materialized_from_existing_intensity_grid_decomp_with_replayed_rho_t"
+    },
+    {
+      "regime": "R0",
+      "intensity": "L1",
+      "budget_sec": 1.0,
+      "event_count": 560,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R0__L1__b1_event_metrics.jsonl",
+      "config_path": null,
+      "source": "outputs/intensity_grid_decomp",
+      "source_policy": "materialized_from_existing_intensity_grid_decomp_with_replayed_rho_t"
+    },
+    {
+      "regime": "R0",
+      "intensity": "L2",
+      "budget_sec": 1.0,
+      "event_count": 560,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R0__L2__b1_event_metrics.jsonl",
+      "config_path": null,
+      "source": "outputs/intensity_grid_decomp",
+      "source_policy": "materialized_from_existing_intensity_grid_decomp_with_replayed_rho_t"
+    },
+    {
+      "regime": "R0",
+      "intensity": "L3",
+      "budget_sec": 1.0,
+      "event_count": 560,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R0__L3__b1_event_metrics.jsonl",
+      "config_path": null,
+      "source": "outputs/intensity_grid_decomp",
+      "source_policy": "materialized_from_existing_intensity_grid_decomp_with_replayed_rho_t"
+    },
+    {
+      "regime": "R1",
+      "intensity": "L0",
+      "budget_sec": 0.5,
+      "event_count": 280,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R1__L0__b0p5_event_metrics.jsonl",
+      "config_path": "outputs/rho_boundary/_configs/R1__L0__b0p5.json"
+    },
+    {
+      "regime": "R1",
+      "intensity": "L1",
+      "budget_sec": 0.5,
+      "event_count": 280,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R1__L1__b0p5_event_metrics.jsonl",
+      "config_path": "outputs/rho_boundary/_configs/R1__L1__b0p5.json"
+    },
+    {
+      "regime": "R1",
+      "intensity": "L2",
+      "budget_sec": 0.5,
+      "event_count": 280,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R1__L2__b0p5_event_metrics.jsonl",
+      "config_path": "outputs/rho_boundary/_configs/R1__L2__b0p5.json"
+    },
+    {
+      "regime": "R1",
+      "intensity": "L3",
+      "budget_sec": 0.5,
+      "event_count": 280,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R1__L3__b0p5_event_metrics.jsonl",
+      "config_path": "outputs/rho_boundary/_configs/R1__L3__b0p5.json"
+    },
+    {
+      "regime": "R1",
+      "intensity": "L0",
+      "budget_sec": 1.0,
+      "event_count": 280,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R1__L0__b1_event_metrics.jsonl",
+      "config_path": "outputs/rho_boundary/_configs/R1__L0__b1.json"
+    },
+    {
+      "regime": "R1",
+      "intensity": "L1",
+      "budget_sec": 1.0,
+      "event_count": 280,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R1__L1__b1_event_metrics.jsonl",
+      "config_path": "outputs/rho_boundary/_configs/R1__L1__b1.json"
+    },
+    {
+      "regime": "R1",
+      "intensity": "L2",
+      "budget_sec": 1.0,
+      "event_count": 280,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R1__L2__b1_event_metrics.jsonl",
+      "config_path": "outputs/rho_boundary/_configs/R1__L2__b1.json"
+    },
+    {
+      "regime": "R1",
+      "intensity": "L3",
+      "budget_sec": 1.0,
+      "event_count": 280,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R1__L3__b1_event_metrics.jsonl",
+      "config_path": "outputs/rho_boundary/_configs/R1__L3__b1.json"
+    },
+    {
+      "regime": "R2",
+      "intensity": "L0",
+      "budget_sec": 0.5,
+      "event_count": 280,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R2__L0__b0p5_event_metrics.jsonl",
+      "config_path": "outputs/rho_boundary/_configs/R2__L0__b0p5.json"
+    },
+    {
+      "regime": "R2",
+      "intensity": "L1",
+      "budget_sec": 0.5,
+      "event_count": 280,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R2__L1__b0p5_event_metrics.jsonl",
+      "config_path": "outputs/rho_boundary/_configs/R2__L1__b0p5.json"
+    },
+    {
+      "regime": "R2",
+      "intensity": "L2",
+      "budget_sec": 0.5,
+      "event_count": 280,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R2__L2__b0p5_event_metrics.jsonl",
+      "config_path": "outputs/rho_boundary/_configs/R2__L2__b0p5.json"
+    },
+    {
+      "regime": "R2",
+      "intensity": "L3",
+      "budget_sec": 0.5,
+      "event_count": 280,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R2__L3__b0p5_event_metrics.jsonl",
+      "config_path": "outputs/rho_boundary/_configs/R2__L3__b0p5.json"
+    },
+    {
+      "regime": "R2",
+      "intensity": "L0",
+      "budget_sec": 1.0,
+      "event_count": 280,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R2__L0__b1_event_metrics.jsonl",
+      "config_path": "outputs/rho_boundary/_configs/R2__L0__b1.json"
+    },
+    {
+      "regime": "R2",
+      "intensity": "L1",
+      "budget_sec": 1.0,
+      "event_count": 280,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R2__L1__b1_event_metrics.jsonl",
+      "config_path": "outputs/rho_boundary/_configs/R2__L1__b1.json"
+    },
+    {
+      "regime": "R2",
+      "intensity": "L2",
+      "budget_sec": 1.0,
+      "event_count": 280,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R2__L2__b1_event_metrics.jsonl",
+      "config_path": "outputs/rho_boundary/_configs/R2__L2__b1.json"
+    },
+    {
+      "regime": "R2",
+      "intensity": "L3",
+      "budget_sec": 1.0,
+      "event_count": 280,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R2__L3__b1_event_metrics.jsonl",
+      "config_path": "outputs/rho_boundary/_configs/R2__L3__b1.json"
+    },
+    {
+      "regime": "R3",
+      "intensity": "L0",
+      "budget_sec": 0.5,
+      "event_count": 210,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R3__L0__b0p5_event_metrics.jsonl",
+      "config_path": "outputs/rho_boundary/_configs/R3__L0__b0p5.json"
+    },
+    {
+      "regime": "R3",
+      "intensity": "L1",
+      "budget_sec": 0.5,
+      "event_count": 210,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R3__L1__b0p5_event_metrics.jsonl",
+      "config_path": "outputs/rho_boundary/_configs/R3__L1__b0p5.json"
+    },
+    {
+      "regime": "R3",
+      "intensity": "L2",
+      "budget_sec": 0.5,
+      "event_count": 210,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R3__L2__b0p5_event_metrics.jsonl",
+      "config_path": "outputs/rho_boundary/_configs/R3__L2__b0p5.json"
+    },
+    {
+      "regime": "R3",
+      "intensity": "L3",
+      "budget_sec": 0.5,
+      "event_count": 210,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R3__L3__b0p5_event_metrics.jsonl",
+      "config_path": "outputs/rho_boundary/_configs/R3__L3__b0p5.json"
+    },
+    {
+      "regime": "R3",
+      "intensity": "L0",
+      "budget_sec": 1.0,
+      "event_count": 210,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R3__L0__b1_event_metrics.jsonl",
+      "config_path": "outputs/rho_boundary/_configs/R3__L0__b1.json"
+    },
+    {
+      "regime": "R3",
+      "intensity": "L1",
+      "budget_sec": 1.0,
+      "event_count": 210,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R3__L1__b1_event_metrics.jsonl",
+      "config_path": "outputs/rho_boundary/_configs/R3__L1__b1.json"
+    },
+    {
+      "regime": "R3",
+      "intensity": "L2",
+      "budget_sec": 1.0,
+      "event_count": 210,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R3__L2__b1_event_metrics.jsonl",
+      "config_path": "outputs/rho_boundary/_configs/R3__L2__b1.json"
+    },
+    {
+      "regime": "R3",
+      "intensity": "L3",
+      "budget_sec": 1.0,
+      "event_count": 210,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R3__L3__b1_event_metrics.jsonl",
+      "config_path": "outputs/rho_boundary/_configs/R3__L3__b1.json"
+    },
+    {
+      "regime": "R4",
+      "intensity": "L0",
+      "budget_sec": 0.5,
+      "event_count": 210,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R4__L0__b0p5_event_metrics.jsonl",
+      "config_path": "outputs/rho_boundary/_configs/R4__L0__b0p5.json"
+    },
+    {
+      "regime": "R4",
+      "intensity": "L1",
+      "budget_sec": 0.5,
+      "event_count": 210,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R4__L1__b0p5_event_metrics.jsonl",
+      "config_path": "outputs/rho_boundary/_configs/R4__L1__b0p5.json"
+    },
+    {
+      "regime": "R4",
+      "intensity": "L2",
+      "budget_sec": 0.5,
+      "event_count": 210,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R4__L2__b0p5_event_metrics.jsonl",
+      "config_path": "outputs/rho_boundary/_configs/R4__L2__b0p5.json"
+    },
+    {
+      "regime": "R4",
+      "intensity": "L3",
+      "budget_sec": 0.5,
+      "event_count": 210,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R4__L3__b0p5_event_metrics.jsonl",
+      "config_path": "outputs/rho_boundary/_configs/R4__L3__b0p5.json"
+    },
+    {
+      "regime": "R4",
+      "intensity": "L0",
+      "budget_sec": 1.0,
+      "event_count": 210,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R4__L0__b1_event_metrics.jsonl",
+      "config_path": "outputs/rho_boundary/_configs/R4__L0__b1.json"
+    },
+    {
+      "regime": "R4",
+      "intensity": "L1",
+      "budget_sec": 1.0,
+      "event_count": 210,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R4__L1__b1_event_metrics.jsonl",
+      "config_path": "outputs/rho_boundary/_configs/R4__L1__b1.json"
+    },
+    {
+      "regime": "R4",
+      "intensity": "L2",
+      "budget_sec": 1.0,
+      "event_count": 210,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R4__L2__b1_event_metrics.jsonl",
+      "config_path": "outputs/rho_boundary/_configs/R4__L2__b1.json"
+    },
+    {
+      "regime": "R4",
+      "intensity": "L3",
+      "budget_sec": 1.0,
+      "event_count": 210,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R4__L3__b1_event_metrics.jsonl",
+      "config_path": "outputs/rho_boundary/_configs/R4__L3__b1.json"
+    },
+    {
+      "regime": "R5",
+      "intensity": "L0",
+      "budget_sec": 0.5,
+      "event_count": 140,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R5__L0__b0p5_event_metrics.jsonl",
+      "config_path": "outputs/rho_boundary/_configs/R5__L0__b0p5.json"
+    },
+    {
+      "regime": "R5",
+      "intensity": "L1",
+      "budget_sec": 0.5,
+      "event_count": 140,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R5__L1__b0p5_event_metrics.jsonl",
+      "config_path": "outputs/rho_boundary/_configs/R5__L1__b0p5.json"
+    },
+    {
+      "regime": "R5",
+      "intensity": "L2",
+      "budget_sec": 0.5,
+      "event_count": 140,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R5__L2__b0p5_event_metrics.jsonl",
+      "config_path": "outputs/rho_boundary/_configs/R5__L2__b0p5.json"
+    },
+    {
+      "regime": "R5",
+      "intensity": "L3",
+      "budget_sec": 0.5,
+      "event_count": 140,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R5__L3__b0p5_event_metrics.jsonl",
+      "config_path": "outputs/rho_boundary/_configs/R5__L3__b0p5.json"
+    },
+    {
+      "regime": "R5",
+      "intensity": "L0",
+      "budget_sec": 1.0,
+      "event_count": 140,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R5__L0__b1_event_metrics.jsonl",
+      "config_path": "outputs/rho_boundary/_configs/R5__L0__b1.json"
+    },
+    {
+      "regime": "R5",
+      "intensity": "L1",
+      "budget_sec": 1.0,
+      "event_count": 140,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R5__L1__b1_event_metrics.jsonl",
+      "config_path": "outputs/rho_boundary/_configs/R5__L1__b1.json"
+    },
+    {
+      "regime": "R5",
+      "intensity": "L2",
+      "budget_sec": 1.0,
+      "event_count": 140,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R5__L2__b1_event_metrics.jsonl",
+      "config_path": "outputs/rho_boundary/_configs/R5__L2__b1.json"
+    },
+    {
+      "regime": "R5",
+      "intensity": "L3",
+      "budget_sec": 1.0,
+      "event_count": 140,
+      "elapsed_sec": 0.0,
+      "output_path": "outputs/rho_boundary/R5__L3__b1_event_metrics.jsonl",
+      "config_path": "outputs/rho_boundary/_configs/R5__L3__b1.json"
+    }
+  ]
+}
